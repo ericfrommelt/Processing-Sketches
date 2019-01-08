@@ -14,21 +14,39 @@ import java.io.IOException;
 
 public class sketch_190108a extends PApplet {
 
-int c1, c2;
+int c1, c2, c3;
 int spaceUnit;
+int [] units = {80, 160, 240, 320, 400, 480, 560, 640, 720, 800, 880, 960};
 
 
 public void setup() {
   
   background(233);
   c1 = color(219, 43, 48);
-  c2 = color(106,204,229);
+  c2 = color(106, 204, 229);
+  c3 = color(0, 0, 0);
   noLoop();
 }
 
 public void draw() {
   gradientBlock(80, 80, 160, 160, c1, c2);
+  gradientBlock(240, 240, 80, 80, c1, c2);
+  gradientBlock(320, 0, 320, 320, c1, c2);
+  gradientBlock(720, 640, 240, 240, c1, c2);
   drawGrid(80, 2);
+  drawRandomGrid(2, 24, 48, c3);
+
+}
+
+public void drawRandomGrid(int sizeA, int sizeB, int numOfPoints, int pointColor) {
+  int setnum = units.length - 1;
+  fill(pointColor);
+  for (int i=0; i<numOfPoints; i++) {
+    int num = units[PApplet.parseInt(random(setnum))];
+    int num2 = units[PApplet.parseInt(random(setnum))];
+    int num3 = PApplet.parseInt(random(sizeA, sizeB));
+    rect(num, num2, num3, num3);
+  }
 }
 
 public void drawGrid(int spaceUnit, int dotSize) {
